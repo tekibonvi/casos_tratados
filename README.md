@@ -1,5 +1,5 @@
 ## Script de Conteo de Casos Únicos (casos_tratados.py)
-Descripción
+- Descripción
 Este script procesa dos reportes exportados de Salesforce (Historial de Casos y Avances) para resolver un problema clave: un agente puede intervenir en el mismo caso y aparecer en ambos reportes.
 La finalidad de este script es generar un conteo de casos únicos por agente, asegurando que cada caso se cuente una sola vez por persona, sin importar en cuántos reportes o cuántas veces aparezca.
 Para este ejemplo estan filtrados y descargados los casos tratados del equipo CRR, correspondientes al 11 de julio de 2025
