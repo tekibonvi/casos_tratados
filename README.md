@@ -22,7 +22,7 @@ El script sigue una lógica de consolidación y elimina los duplicados en varios
 
 4. Consolidación: Se juntan las dos listas de interacciones en una sola gran tabla. En este punto, un mismo par **(agente, caso)** podría estar duplicado si el agente apareció en ambos reportes para el mismo caso.
 
-5. Desduplicación Final : Sobre la gran tabla consolidada, se vuelven a eliminar duplicados. Esto asegura que si el agente "JUAN PEREZ" trabajó en el caso "06159778" y aparece tanto en el reporte de historial como en el de avances, la combinación ('JUAN PEREZ', '06159778') se cuente una sola y única vez.
+5. Desduplicación Final : Sobre la gran tabla consolidada, se vuelven a eliminar duplicados. Esto asegura que si el AGENTE trabajó en el caso X y aparece tanto en el reporte de historial como en el de avances, la combinación ('AGENTE', 'X') se cuente una sola y única vez.
 
 6. Finalmente, se agrupa esta lista definitiva por agente y se cuenta la cantidad de casos asociados a cada uno para obtener el resultado final.
 
@@ -32,11 +32,5 @@ Bash
 python casos_tratados.py "ruta/al/historial.csv" "ruta/al/avances.csv"
 
 --------
-´sql
-Tener en cuenta que esto se puede resolver con una consulta sql.
-SELECT agente, COUNT(caso) AS "Casos Únicos Tratados" FROM (
-    SELECT DISTINCT "Modificado por" AS agente, "Número del caso" AS caso
-    FROM historial_de_casos UNION SELECT DISTINCT "Avance: Creado por" AS agente,"Caso" AS caso FROM avances
-    ) AS casos_unicos
-WHERE agente IS NOT NULL GROUP BY agente ORDER BY "Casos Únicos Tratados" DESC;
-´
+
+
